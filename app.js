@@ -51,6 +51,9 @@ app.use(contactRoutes);
 app.use(quoteRoutes);
 
 
+app.get('/', (req, res) => {
+  res.status(200).json({ status: 'API funcionando' });
+})
 
 app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'OK' });
@@ -74,3 +77,6 @@ const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
+
+// https://backend-l8vtzwkyw-gabiicarvalhos-projects.vercel.app/api/quote
+//https://backend-l8vtzwkyw-gabiicarvalhos-projects.vercel.app/api/contact
