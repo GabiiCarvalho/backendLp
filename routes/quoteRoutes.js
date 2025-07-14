@@ -12,8 +12,8 @@ router.use((req, res, next) => {
 });
 
 
-router.post('/quote', quoteController.submitQuoteRequest);
+router.post('/api/quote', quoteController.submitQuoteRequest);
 
-router.get('/quote', quoteController.getQuote);
+router.get('/api/quote', quoteController.getQuote);
 
 module.exports = router;

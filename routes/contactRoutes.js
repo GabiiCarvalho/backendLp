@@ -12,8 +12,8 @@ router.use((req, res, next) => {
 });
 
 
-router.post('/contact', contactController.submitContactForm);
+router.post('/api/contact', contactController.submitContactForm);
 
-router.get('/contact', contactController.getContact);
+router.get('/api/contact', contactController.getContact);
 
 module.exports = router;
