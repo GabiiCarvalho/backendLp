@@ -45,8 +45,8 @@ app.use((req, res, next) => {
 connectDB();
 
 
-app.use('/', require('./routes/contactRoutes'));
-app.use('/', require('./routes/quoteRoutes'));
+app.use('/api', require('./routes/contactRoutes'));
+app.use('/api', require('./routes/quoteRoutes'));
 
 
 app.get('/api/health', (req, res) => {
