@@ -2,6 +2,8 @@ require('dotenv').config({ path: `${__dirname}/.env` });
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
+const contactRoutes = require('./routes/contactRoutes');
+const quoteRoutes = require('./routes/quoteRoutes');
 
 const app = express();
 
@@ -45,8 +47,8 @@ app.use((req, res, next) => {
 connectDB();
 
 
-app.use('/', require('./routes/contactRoutes'));
-app.use('/', require('./routes/quoteRoutes'));
+app.use(contactRoutes);
+app.use(quoteRoutes);
 
 
 

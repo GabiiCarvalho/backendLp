@@ -85,22 +85,27 @@ exports.submitContactForm = async (req, res) => {
 exports.getContact = async (req, res) => {
   try {
     const contact = await Contact.find().sort({ createdAt: -1 });
+
     if (!contact || contact.length === 0) {
       return res.status(404).json({
         success: false,
         message: 'Nenhum contato encontrado'
       });
     }
+
     res.status(200).json({
       success: true,
       count: contact.length,
       data: contact
     });
+
   } catch (error) {
+    console.error('Erro detalhado ao buscar contatos:', error);
     res.status(500).json({
       success: false,
       message: 'Erro ao buscar contatos',
-      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined,
+      stack: process.env.NODE_ENV === 'development' ? error.stack : undefined
     });
   }
 };
