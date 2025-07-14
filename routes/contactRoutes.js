@@ -14,4 +14,6 @@ router.use((req, res, next) => {
 
 router.post('/contact', contactController.submitContactForm);
 
+router.get('/contact', contactController.getContact);
+
 module.exports = router;

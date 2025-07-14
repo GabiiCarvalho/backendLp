@@ -14,4 +14,6 @@ router.use((req, res, next) => {
 
 router.post('/quote', quoteController.submitQuoteRequest);
 
+router.get('/quote', quoteController.getQuote);
+
 module.exports = router;

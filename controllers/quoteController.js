@@ -54,22 +54,23 @@ exports.submitQuoteRequest = async (req, res) => {
 
 exports.getQuote = async (req, res) => {
   try {
-    const quotes = await Quote.find().sort({ createdAt: -1 });
-    if (!quotes || quotes.length === 0) {
+    const quote = await Quote.find().sort({ createdAt: -1 });
+    if (!quote || quote.length === 0) {
       return res.status(404).json({
         success: false,
-        message: 'No quotes found'
+        message: 'Nenhum orçamento encontrado'
       });
     }
     res.status(200).json({
       success: true,
-      count: quotes.length,
-      data: quotes
+      count: quote.length,
+      data: quote
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Error fetching quotes'
+      message: 'Erro ao buscar orçamentos',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 };

@@ -56,10 +56,16 @@ app.get('/api/health', (req, res) => {
 app.get('/', (req, res) => {
   res.status(200).json({
     status: 'API Online',
-    message: 'Esta API aceita apenas requisições POST',
+    message: 'Bem-vindo à API de contatos e orçamentos',
     endpoints: {
-      contact: 'POST /api/contact',
-      quote: 'POST /api/quote'
+      contact: {
+        submit: 'POST /api/contact',
+        list: 'GET /api/contact'
+      },
+        quote: {
+          submit: 'POST /api/quote',
+          list: 'GET /api/quote'
+        }
     }
   });
 });
