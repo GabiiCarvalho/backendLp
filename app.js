@@ -45,8 +45,10 @@ app.use((req, res, next) => {
 connectDB();
 
 
-app.use('/api', require('./routes/contactRoutes'));
-app.use('/api', require('./routes/quoteRoutes'));
+app.use('/', require('./routes/contactRoutes'));
+res.status(200).json({ status: "funcionando" })
+app.use('/', require('./routes/quoteRoutes'));
+res.status(200).json({ status: "funcionando" })
 
 
 app.get('/api/health', (req, res) => {
@@ -62,10 +64,10 @@ app.get('/', (req, res) => {
         submit: 'POST /api/contact',
         list: 'GET /api/contact'
       },
-        quote: {
-          submit: 'POST /api/quote',
-          list: 'GET /api/quote'
-        }
+      quote: {
+        submit: 'POST /api/quote',
+        list: 'GET /api/quote'
+      }
     }
   });
 });
