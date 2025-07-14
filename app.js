@@ -8,13 +8,13 @@ const app = express();
 
 const allowedOrigins = [
   'http://localhost:5500',
-  'http://127.0.0.1:5500',  
+  'http://127.0.0.1:5500',
   'https://*.vercel.app'
 ];
 
 const corsOptions = {
   origin: function (origin, callback) {
-    
+
     if (!origin) return callback(null, true);
 
     if (allowedOrigins.indexOf(origin) !== -1) {
@@ -52,6 +52,19 @@ app.use('/api', require('./routes/quoteRoutes'));
 app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'OK' });
 });
+
+app.get('/', (req, res) => {
+  res.status(200).json({
+    status: 'API Online',
+    message: 'Esta API aceita apenas requisições POST',
+    endpoints: {
+      contact: 'POST /api/contact',
+      quote: 'POST /api/quote'
+    }
+  });
+});
+
+app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 const PORT = process.env.PORT || 5500;
 app.listen(PORT, () => {
