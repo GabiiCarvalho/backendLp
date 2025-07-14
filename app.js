@@ -46,32 +46,25 @@ connectDB();
 
 
 app.use('/', require('./routes/contactRoutes'));
-res.status(200).json({ status: "funcionando" })
 app.use('/', require('./routes/quoteRoutes'));
-res.status(200).json({ status: "funcionando" })
+
 
 
 app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'OK' });
 });
 
-app.get('/', (req, res) => {
+app.get('/api/contact', (req, res) => {
   res.status(200).json({
-    status: 'API Online',
-    message: 'Bem-vindo à API de contatos e orçamentos',
-    endpoints: {
-      contact: {
-        submit: 'POST /api/contact',
-        list: 'GET /api/contact'
-      },
-      quote: {
-        submit: 'POST /api/quote',
-        list: 'GET /api/quote'
-      }
-    }
+    status: 'API Online'
   });
 });
 
+app.get('/api/quote', (req, res) => {
+  res.status(200).json({
+    status: 'API Online'
+  });
+});
 
 app.get('/favicon.ico', (req, res) => res.status(204).end());
 
