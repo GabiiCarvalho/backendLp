@@ -52,10 +52,10 @@ exports.submitQuoteRequest = async (req, res) => {
   }
 };
 
-exports.getQuote = async (req, res) => {
+exports.getQuotes = async (req, res) => {
   try {
-    const quote = await Quote.find().sort({ createdAt: -1 });
-    if (!quote || quote.length === 0) {
+    const quotes = await Quote.find().sort({ createdAt: -1 });
+    if (!quotes || quotes.length === 0) {
       return res.status(404).json({
         success: false,
         message: 'Nenhum orçamento encontrado'
@@ -63,10 +63,11 @@ exports.getQuote = async (req, res) => {
     }
     res.status(200).json({
       success: true,
-      count: quote.length,
-      data: quote
+      count: quotes.length,
+      data: quotes
     });
   } catch (error) {
+    console.error('Erro ao buscar orçamentos', error);
     res.status(500).json({
       success: false,
       message: 'Erro ao buscar orçamentos',
